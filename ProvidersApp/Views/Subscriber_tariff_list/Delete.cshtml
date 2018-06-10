@@ -1,0 +1,48 @@
+﻿@model ProvidersApp.Models.subscriber_tariff_list
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>subscriber_tariff_list</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subscribers.full_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subscribers.full_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tariffs.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tariffs.name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

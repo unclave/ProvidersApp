@@ -1,0 +1,50 @@
+﻿@model ProvidersApp.Models.subscribers
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>subscribers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.full_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.full_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telephone_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telephone_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personal_data.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personal_data.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.regions.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.regions.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

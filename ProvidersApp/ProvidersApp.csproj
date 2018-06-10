@@ -218,6 +218,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OperatorsController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
+    <Compile Include="Controllers\Personal_dataController.cs" />
+    <Compile Include="Controllers\RegionsController.cs" />
+    <Compile Include="Controllers\SubscribersController.cs" />
+    <Compile Include="Controllers\Subscriber_tariff_listController.cs" />
+    <Compile Include="Controllers\TariffsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -375,6 +382,41 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Operators\Create.cshtml" />
+    <Content Include="Views\Operators\Delete.cshtml" />
+    <Content Include="Views\Operators\Details.cshtml" />
+    <Content Include="Views\Operators\Edit.cshtml" />
+    <Content Include="Views\Operators\Index.cshtml" />
+    <Content Include="Views\Payments\Create.cshtml" />
+    <Content Include="Views\Payments\Delete.cshtml" />
+    <Content Include="Views\Payments\Details.cshtml" />
+    <Content Include="Views\Payments\Edit.cshtml" />
+    <Content Include="Views\Payments\Index.cshtml" />
+    <Content Include="Views\Personal_data\Create.cshtml" />
+    <Content Include="Views\Personal_data\Delete.cshtml" />
+    <Content Include="Views\Personal_data\Details.cshtml" />
+    <Content Include="Views\Personal_data\Edit.cshtml" />
+    <Content Include="Views\Personal_data\Index.cshtml" />
+    <Content Include="Views\Regions\Create.cshtml" />
+    <Content Include="Views\Regions\Delete.cshtml" />
+    <Content Include="Views\Regions\Details.cshtml" />
+    <Content Include="Views\Regions\Edit.cshtml" />
+    <Content Include="Views\Regions\Index.cshtml" />
+    <Content Include="Views\Subscriber_tariff_list\Create.cshtml" />
+    <Content Include="Views\Subscriber_tariff_list\Delete.cshtml" />
+    <Content Include="Views\Subscriber_tariff_list\Details.cshtml" />
+    <Content Include="Views\Subscriber_tariff_list\Edit.cshtml" />
+    <Content Include="Views\Subscriber_tariff_list\Index.cshtml" />
+    <Content Include="Views\Subscribers\Create.cshtml" />
+    <Content Include="Views\Subscribers\Delete.cshtml" />
+    <Content Include="Views\Subscribers\Details.cshtml" />
+    <Content Include="Views\Subscribers\Edit.cshtml" />
+    <Content Include="Views\Subscribers\Index.cshtml" />
+    <Content Include="Views\Tariffs\Create.cshtml" />
+    <Content Include="Views\Tariffs\Delete.cshtml" />
+    <Content Include="Views\Tariffs\Details.cshtml" />
+    <Content Include="Views\Tariffs\Edit.cshtml" />
+    <Content Include="Views\Tariffs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,42 @@
+﻿@model ProvidersApp.Models.subscriber_tariff_list
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>subscriber_tariff_list</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subscribers.full_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subscribers.full_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tariffs.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tariffs.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
