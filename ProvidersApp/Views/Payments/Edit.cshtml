@@ -1,10 +1,10 @@
 ﻿@model ProvidersApp.Models.payments
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Изменить";
 }
 
-<h2>Edit</h2>
+
 
 
 @using (Html.BeginForm())
@@ -12,21 +12,21 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>payments</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.date, "Дата", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.JQueryUI().DatepickerFor(model => model.date, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.payment_value, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.payment_value, "Платёж", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.payment_value, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.payment_value, "", new { @class = "text-danger" })
@@ -34,7 +34,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.id_subscriber_tariff, "id_subscriber_tariff", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.id_subscriber_tariff, "Код записи списка подключений", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("id_subscriber_tariff", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.id_subscriber_tariff, "", new { @class = "text-danger" })
@@ -50,7 +50,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Вернуться к записям", "Index")
 </div>
 
 @section Scripts {

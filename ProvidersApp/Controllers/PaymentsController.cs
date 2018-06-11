@@ -21,6 +21,34 @@ namespace ProvidersApp.Controllers
             return View(payments.ToList());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult Index(string search)
+        {
+            List<payments> result = new List<payments>();
+            result = db.payments
+                .Include(a => a.subscriber_tariff_list)
+                .Where(a => a.payment_value.ToString().ToLower().Contains(search.Trim().ToLower()) ||
+                            a.subscriber_tariff_list.subscribers.full_name.ToLower().Contains(search.Trim().ToLower()))
+                .ToList();
+            if (DateTime.TryParse(search, out var val))
+            {
+                try
+                {
+                    result.AddRange(db.payments
+                        .Include(a => a.subscriber_tariff_list)
+                        .Where(a => a.date == val)
+                        .ToList());
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            return View(result);
+        }   
+
         // GET: Payments/Details/5
         public ActionResult Details(int? id)
         {

@@ -1,27 +1,43 @@
 ﻿@model IEnumerable<ProvidersApp.Models.personal_data>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Персональные данные";
 }
 
-<h2>Index</h2>
+@using (Html.BeginForm("Index", "Personal_data", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div class="col-md-10">
+            <label for="query">
+                <input type="text" name="search" class="form-control" />
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Найти" class="btn btn-default" />
+        </div>
+    </div>
+}
+<br>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Создать запись", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.address)
+            Адрес
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.passport_info)
+            Номер паспорта
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.birthday)
+            День рождения
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.sex)
+            Пол
         </th>
         <th></th>
     </tr>
@@ -41,9 +57,9 @@
             @Html.DisplayFor(modelItem => item.sex)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Изменить", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Подробно", "Details", new { id=item.id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.id })
         </td>
     </tr>
 }

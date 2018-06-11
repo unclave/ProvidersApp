@@ -21,6 +21,18 @@ namespace ProvidersApp.Controllers
             return View(operators.ToList());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult Index(string search)
+        {
+            var result = db.operators
+                .Include(a => a.regions)
+                .Where(a => a.full_name.ToLower().Contains(search.Trim().ToLower()) || a.experience.ToString().ToLower().Contains(search.Trim().ToLower()) || a.salary.ToString().ToLower().Contains(search.Trim().ToLower()) || a.regions.name.ToLower().Contains(search.Trim().ToLower()))
+                .ToList();
+            return View(result);
+        }
+
         // GET: Operators/Details/5
         public ActionResult Details(int? id)
         {
