@@ -10,14 +10,43 @@ using ProvidersApp.Models;
 
 namespace ProvidersApp.Controllers
 {
+    [Authorize]
     public class Personal_dataController : Controller
     {
         private providersEntities db = new providersEntities();
 
         // GET: Personal_data
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.personal_data.ToList());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult Index(string search)
+        {
+            List<personal_data> result = new List<personal_data>();
+            result = db.personal_data
+                .Where(a => a.address.ToLower().Contains(search.Trim().ToLower()) ||
+                            a.passport_info.ToLower().Contains(search.Trim().ToLower()) ||
+                            a.sex.ToLower().Contains(search.Trim().ToLower()))
+                .ToList();
+            if (DateTime.TryParse(search, out var val))
+            {
+                try
+                {
+                    result.AddRange(db.personal_data
+                        .Where(a => a.birthday == val));
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            return View(result);
         }
 
         // GET: Personal_data/Details/5

@@ -10,18 +10,49 @@ using ProvidersApp.Models;
 
 namespace ProvidersApp.Controllers
 {
+    [Authorize]
     public class Subscriber_tariff_listController : Controller
     {
         private providersEntities db = new providersEntities();
 
         // GET: Subscriber_tariff_list
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var subscriber_tariff_list = db.subscriber_tariff_list.Include(s => s.subscribers).Include(s => s.tariffs);
             return View(subscriber_tariff_list.ToList());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult Index(string search)
+        {
+            List<subscriber_tariff_list> result = new List<subscriber_tariff_list>();
+            result = db.subscriber_tariff_list
+                .Include(a => a.subscribers)
+                .Include(a => a.tariffs)
+                .Where(a => a.subscribers.full_name.ToLower().Contains(search.Trim().ToLower()) ||
+                            a.tariffs.name.ToLower().Contains(search.Trim().ToLower()))
+                .ToList();
+            if (DateTime.TryParse(search, out var val))
+            {
+                try
+                {
+                    result.AddRange(db.subscriber_tariff_list
+                        .Where(a => a.date == val).ToList());
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            return View(result);
+        }
+
         // GET: Subscriber_tariff_list/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)

@@ -10,17 +10,32 @@ using ProvidersApp.Models;
 
 namespace ProvidersApp.Controllers
 {
+    [Authorize]
     public class RegionsController : Controller
     {
         private providersEntities db = new providersEntities();
 
         // GET: Regions
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.regions.ToList());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult Index(string search)
+        {
+            List<regions> result = new List<regions>();
+            result = db.regions
+                .Where(a => a.name.ToLower().Contains(search.Trim().ToLower()))
+                .ToList();
+            return View(result);
+        }
+
         // GET: Regions/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)

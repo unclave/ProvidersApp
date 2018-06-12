@@ -10,11 +10,13 @@ using ProvidersApp.Models;
 
 namespace ProvidersApp.Controllers
 {
+    [Authorize]
     public class PaymentsController : Controller
     {
         private providersEntities db = new providersEntities();
 
         // GET: Payments
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var payments = db.payments.Include(p => p.subscriber_tariff_list);

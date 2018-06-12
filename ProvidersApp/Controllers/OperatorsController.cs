@@ -10,11 +10,13 @@ using ProvidersApp.Models;
 
 namespace ProvidersApp.Controllers
 {
+    [Authorize]
     public class OperatorsController : Controller
     {
         private providersEntities db = new providersEntities();
 
         // GET: Operators
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var operators = db.operators.Include(o => o.regions);

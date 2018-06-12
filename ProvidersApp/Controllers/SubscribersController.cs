@@ -10,18 +10,36 @@ using ProvidersApp.Models;
 
 namespace ProvidersApp.Controllers
 {
+    [Authorize]
     public class SubscribersController : Controller
     {
         private providersEntities db = new providersEntities();
 
         // GET: Subscribers
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var subscribers = db.subscribers.Include(s => s.personal_data).Include(s => s.regions);
             return View(subscribers.ToList());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult Index(string search)
+        {
+            var result = db.subscribers
+                .Include(a => a.personal_data)
+                .Include(a => a.regions)
+                .Where(a => a.full_name.ToLower().Contains(search.Trim().ToLower()) ||
+                            a.telephone_number.ToLower().Contains(search.Trim().ToLower()) ||
+                            a.regions.name.ToLower().Contains(search.Trim().ToLower()))
+                .ToList();
+            return View(result);
+        }
+
         // GET: Subscribers/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)

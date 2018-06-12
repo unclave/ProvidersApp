@@ -10,17 +10,35 @@ using ProvidersApp.Models;
 
 namespace ProvidersApp.Controllers
 {
+    [Authorize]
     public class TariffsController : Controller
     {
         private providersEntities db = new providersEntities();
 
         // GET: Tariffs
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.tariffs.ToList());
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult Index(string search)
+        {
+            var result = db.tariffs
+                .Where(a => a.name.ToLower().Contains(search.ToLower().Trim()) ||
+                            a.price.ToString().ToLower().Contains(search.ToLower().Trim()) ||
+                            a.minute_number.ToString().ToLower().Contains(search.ToLower().Trim()) ||
+                            a.sms_number.ToString().ToLower().Contains(search.ToLower().Trim()))
+                .ToList();
+            return View(result);
+        }
+
         // GET: Tariffs/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
