@@ -36,6 +36,7 @@ namespace ProvidersApp.Controllers
         }
 
         // GET: Operators/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)

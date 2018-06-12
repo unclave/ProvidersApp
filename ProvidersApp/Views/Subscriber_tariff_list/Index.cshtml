@@ -45,10 +45,10 @@
             @Html.DisplayFor(modelItem => item.date)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.subscribers.full_name)
+            @Html.ActionLink(Html.DisplayFor(modelItem => item.subscribers.full_name).ToString(), "Details", "Subscribers", new { id = item.id_subscriber }, null)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.tariffs.name)
+            @Html.ActionLink(Html.DisplayFor(modelItem => item.tariffs.name).ToString(), "Details", "Tariffs", new { id = item.id_tariff}, null)
         </td>
         <td>
             @Html.ActionLink("Изменить", "Edit", new { id=item.id }) |

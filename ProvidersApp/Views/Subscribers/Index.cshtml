@@ -51,10 +51,10 @@
             @Html.DisplayFor(modelItem => item.telephone_number)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.personal_data.address)
+            @Html.ActionLink(Html.DisplayFor(modelItem => item.personal_data.address).ToString(), "Details", "Personal_data", new { id = item.id_personal_data }, null)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.regions.name)
+            @Html.ActionLink(Html.DisplayFor(modelItem => item.regions.name).ToString(), "Details", "Regions", new { id = item.id_region }, null)
         </td>
         <td>
             @Html.ActionLink("Изменить", "Edit", new { id=item.id }) |

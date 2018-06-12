@@ -50,6 +50,7 @@ namespace ProvidersApp.Controllers
         }
 
         // GET: Personal_data/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
